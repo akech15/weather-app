@@ -42,8 +42,6 @@ public class WeatherInfo {
         this.dt = dt;
     }
 
-
-
     public Main getMain() {
         return main;
     }

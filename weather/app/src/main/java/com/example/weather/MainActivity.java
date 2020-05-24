@@ -12,7 +12,9 @@ import com.example.weather.integration.countries.CountriesService;
 import com.example.weather.integration.countries.CountriesServiceParams;
 import com.example.weather.utils.retrofit.RetrofitHelper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pl.droidsonroids.gif.GifImageView;
 import retrofit2.Call;
@@ -28,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tryAgainBut = findViewById(R.id.try_again);
+        gifImageView = findViewById(R.id.main_activity_loading_gif);
         getCountriesFromServer();
     }
 
     private void getCountriesFromServer() {
+        gifImageView.setVisibility(View.VISIBLE);
         CountriesService countriesService = RetrofitHelper.getCountriesService(CountriesServiceParams.URL);
         downloadCountryNames(countriesService);
     }
@@ -42,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
                 if (response.isSuccessful()) {
+                    gifImageView.setVisibility(View.INVISIBLE);
                     List<Country> list = response.body();
+                    List<String> result = getCountryNames(list);
                     Intent in = new Intent(MainActivity.this, WeatherActivity.class);
-//                    in.putExtra("countriesList", (Parcelable) list);
+                    in.putStringArrayListExtra("countries", (ArrayList<String>) result);
                     startActivity(in);
                 } else {
                     tryAgainButtonAction();
@@ -58,8 +64,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private List<String> getCountryNames(List<Country> list) {
+        return list.stream().map(Country::getName).collect(Collectors.toList());
+    }
+
     private void tryAgainButtonAction() {
         tryAgainBut.setVisibility(View.VISIBLE);
+        gifImageView.setVisibility(View.INVISIBLE);
         tryAgainBut.setOnClickListener(v -> getCountriesFromServer());
     }
 

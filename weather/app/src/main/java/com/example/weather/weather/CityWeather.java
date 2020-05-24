@@ -2,8 +2,8 @@ package com.example.weather.weather;
 
 import java.util.List;
 
-public class WeatherInfoWrapper {
-    private List<WeatherInfo> list;
+public class CityWeather {
+    private List<WeatherInfo> cities;
     private City city;
 
     public City getCity() {
@@ -14,11 +14,11 @@ public class WeatherInfoWrapper {
         this.city = city;
     }
 
-    public List<WeatherInfo> getList() {
-        return list;
+    public List<WeatherInfo> getCities() {
+        return cities;
     }
 
-    public void setList(List<WeatherInfo> list) {
-        this.list = list;
+    public void setCities(List<WeatherInfo> cities) {
+        this.cities = cities;
     }
 }
