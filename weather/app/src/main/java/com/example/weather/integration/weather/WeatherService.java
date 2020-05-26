@@ -10,6 +10,7 @@ public interface WeatherService {
     @GET("forecast")
     Call<CityWeather> getWeather(
             @Query("q") String countryName,
+            @Query("units") String unit,
             @Query("appid") String appKey
     );
 }

@@ -1,31 +1,23 @@
 package com.example.weather.weather;
 
 public class City {
-    private String name;
-    private String sunrise;
-    private String sunset;
+    private long sunrise;
+    private long sunset;
 
-    public String getSunrise() {
+
+    public long getSunrise() {
         return sunrise;
     }
 
-    public void setSunrise(String sunrise) {
+    public void setSunrise(long sunrise) {
         this.sunrise = sunrise;
     }
 
-    public String getSunset() {
+    public long getSunset() {
         return sunset;
     }
 
-    public void setSunset(String sunset) {
+    public void setSunset(long sunset) {
         this.sunset = sunset;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

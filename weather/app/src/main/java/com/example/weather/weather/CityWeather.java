@@ -3,8 +3,9 @@ package com.example.weather.weather;
 import java.util.List;
 
 public class CityWeather {
-    private List<WeatherInfo> cities;
+
     private City city;
+    private List<WeatherInfo> list;
 
     public City getCity() {
         return city;
@@ -14,11 +15,11 @@ public class CityWeather {
         this.city = city;
     }
 
-    public List<WeatherInfo> getCities() {
-        return cities;
+    public List<WeatherInfo> getList() {
+        return list;
     }
 
-    public void setCities(List<WeatherInfo> cities) {
-        this.cities = cities;
+    public void setList(List<WeatherInfo> list) {
+        this.list = list;
     }
 }

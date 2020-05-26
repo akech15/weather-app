@@ -1,4 +1,4 @@
-package com.example.weather.Fragment;
+package com.example.weather.Fragment.weatherfragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,32 +39,48 @@ public class WeatherFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_weather, null);
-        initConnection();
+        View view = inflater.inflate(R.layout.app_finished_graphic, null);
+        initConnectionAndDownloadWeatherDataAsyncAndDraw(view);
         return view;
     }
 
-    private void initConnection() {
+    private void initConnectionAndDownloadWeatherDataAsyncAndDraw(View view) {
         WeatherService weatherService = RetrofitHelper.getWeatherService(WeatherServiceParams.URL);
-        createWeatherApiResponse(weatherService);
+        createWeatherApiResponse(weatherService, view);
     }
 
-
-    private void createWeatherApiResponse(WeatherService weatherService) {
-        weatherService.getWeather(country, WeatherServiceParams.key).enqueue(new Callback<CityWeather>() {
+    private void createWeatherApiResponse(WeatherService weatherService, View view) {
+        weatherService.getWeather(country, "metric", WeatherServiceParams.key).enqueue(new Callback<CityWeather>() {
             @Override
             public void onResponse(Call<CityWeather> call, Response<CityWeather> response) {
                 if (response.isSuccessful()) {
-
-                }else{
-                    initConnection();
+                    CityWeather cityWeather = response.body();
+                    drawAppMainWindow(view, cityWeather);
+                } else {
+                    initConnectionAndDownloadWeatherDataAsyncAndDraw(view);
                 }
             }
 
             @Override
             public void onFailure(Call<CityWeather> call, Throwable t) {
-                initConnection();
+                initConnectionAndDownloadWeatherDataAsyncAndDraw(view);
             }
         });
     }
+
+    private void drawAppMainWindow(View view, CityWeather cityWeather) {
+        drawNorthLayout(view, cityWeather);
+        drawMiddleLayout(view, cityWeather);
+    }
+
+    private void drawMiddleLayout(View view, CityWeather cityWeather) {
+        WeatherFragmentMiddleLayoutDrawer middleLayout = new WeatherFragmentMiddleLayoutDrawer(view, cityWeather);
+        middleLayout.draw();
+    }
+
+    private void drawNorthLayout(View view, CityWeather cityWeather) {
+        WeatherFragmentNorthLayoutDrawer weatherFragmentNorthLayoutDrawer = new WeatherFragmentNorthLayoutDrawer(view, cityWeather, country);
+        weatherFragmentNorthLayoutDrawer.draw();
+    }
+
 }

@@ -1,8 +1,21 @@
 package com.example.weather.weather;
 
-public class Main {
-   private String temp;
+import com.google.gson.annotations.SerializedName;
+
+public class TemperatureInfo {
+    private String temp;
     private String humidity;
+
+    @SerializedName("feels_like")
+    private String feelsLike;
+
+    public String getFeelsLike() {
+        return feelsLike;
+    }
+
+    public void setFeelsLike(String feelsLike) {
+        this.feelsLike = feelsLike;
+    }
 
     public String getTemp() {
         return temp;

@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">weather</string>
     <string name="try_again">Try Again</string>
-
-    <string name="no_description">no_description</string>
-    <string name="precipitation">Precipitation</string>
+    <string name="city_name">Rome</string>
+    <string name="current_date">Monday 17 gen 18 6:32 am</string>
+    <string name="temperature">15 C</string>
+    <string name="perceived_temp">Perceived 15 C</string>
+    <string name="description_Number">5 %</string>
+    <string name="description_name">am</string>
+    <string name="activity_weather_by_time_time">6:00</string>
+    <string name="activity_weather_by_time_temp">15 C</string>
+    <string name="no_des">no_des</string>
     <string name="humidity">Humidity</string>
-    <string name="windSpeed">Wind Speed</string>
-    <string name="dayAndNight">Day and Night</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="day_and_night">Day And Night</string>
+
+
 </resources>

@@ -1,21 +1,37 @@
 package com.example.weather.weather;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class WeatherInfo {
-    private String dt;
-    private String dt_txt;
-    private Main main;
+    private long dt;
+
+    @SerializedName("dt_txt")
+    private String temperatureDate;
+
+    @SerializedName("main")
+    private TemperatureInfo temperatureInfo;
     private List<Weather> weather;
     private Wind wind;
 
+    @SerializedName("clouds")
+    private Cloud cloud;
 
-    public String getDt_txt() {
-        return dt_txt;
+    public Cloud getCloud() {
+        return cloud;
     }
 
-    public void setDt_txt(String dt_txt) {
-        this.dt_txt = dt_txt;
+    public void setCloud(Cloud cloud) {
+        this.cloud = cloud;
+    }
+
+    public String getTemperatureDate() {
+        return temperatureDate;
+    }
+
+    public void setTemperatureDate(String temperatureDate) {
+        this.temperatureDate = temperatureDate;
     }
 
     public Wind getWind() {
@@ -34,27 +50,19 @@ public class WeatherInfo {
         this.weather = weather;
     }
 
-    public String getDt() {
+    public TemperatureInfo getTemperatureInfo() {
+        return temperatureInfo;
+    }
+
+    public void setTemperatureInfo(TemperatureInfo temperatureInfo) {
+        this.temperatureInfo = temperatureInfo;
+    }
+
+    public long getData() {
         return dt;
     }
 
-    public void setDt(String dt) {
-        this.dt = dt;
-    }
-
-    public Main getMain() {
-        return main;
-    }
-
-    public void setMain(Main main) {
-        this.main = main;
-    }
-
-    public String getData() {
-        return dt;
-    }
-
-    public void setData(String name) {
+    public void setData(long name) {
         this.dt = name;
     }
 }
