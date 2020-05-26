@@ -1,4 +1,4 @@
-package com.example.weather.viewPagerAdapter;
+package com.example.weather.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

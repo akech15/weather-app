@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.weather.viewPagerAdapter.ViewPagerAdapter;
+import com.example.weather.Adapter.ViewPagerAdapter;
 
 import java.util.List;
 

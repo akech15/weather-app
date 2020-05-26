@@ -71,6 +71,13 @@ public class WeatherFragment extends Fragment {
     private void drawAppMainWindow(View view, CityWeather cityWeather) {
         drawNorthLayout(view, cityWeather);
         drawMiddleLayout(view, cityWeather);
+        drawSouthLayout(view, cityWeather);
+    }
+
+    private void drawSouthLayout(View view, CityWeather cityWeather) {
+        WeatherFragmentSouthLayoutDrawer southLayout = new WeatherFragmentSouthLayoutDrawer(view,cityWeather);
+        southLayout.draw();
+
     }
 
     private void drawMiddleLayout(View view, CityWeather cityWeather) {

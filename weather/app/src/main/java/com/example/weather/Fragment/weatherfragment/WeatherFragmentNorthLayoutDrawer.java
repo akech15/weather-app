@@ -12,6 +12,8 @@ import com.example.weather.utils.DateUtils;
 import com.example.weather.utils.Utilities;
 import com.example.weather.weather.CityWeather;
 
+import java.util.Date;
+
 public class WeatherFragmentNorthLayoutDrawer {
 
     private ConstraintLayout northWindowLayout;
@@ -43,29 +45,34 @@ public class WeatherFragmentNorthLayoutDrawer {
         dayOrNightIcon.setImageResource(iconMoonOrSunImageResourceId);
     }
 
-    private void setCountryName(String country) {
+    private void setCountryName() {
         TextView cityName = northWindowLayout.findViewById(R.id.country_name);
         cityName.setText(country);
     }
 
-    private void setTemperature(String temperature) {
+    private void setTemperature() {
         TextView temp = northWindowLayout.findViewById(R.id.city_temperature);
         double tempDouble = Double.parseDouble(temperature);
         temp.setText(((int) tempDouble) + " C");
     }
 
-    private void setFeelsLike(String temperature) {
+    private void setFeelsLike() {
         TextView temp = northWindowLayout.findViewById(R.id.percieved);
-        double tempDouble = Double.parseDouble(temperature);
+        double tempDouble = Double.parseDouble(feelsLike);
         temp.setText("Perceived " + (int) tempDouble + " C");
+    }
+    private void setDate(){
+        TextView temp = northWindowLayout.findViewById(R.id.date_textview);
+        Date date = new Date();
+        String result = DateUtils.parseDateToHoursAndMinutes(date, "E, MMM dd, yyyy HH:mm:ss aa" );
+        temp.setText(result);
     }
 
     public void draw() {
-        setCountryName(country);
-        setFeelsLike(feelsLike);
-        setTemperature(temperature);
-
-
+        setCountryName();
+        setFeelsLike();
+        setTemperature();
+        setDate();
         setBackgroundColorAndIcon();
     }
 }

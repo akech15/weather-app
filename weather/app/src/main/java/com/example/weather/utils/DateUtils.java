@@ -11,6 +11,12 @@ import java.util.Date;
 public class DateUtils {
 
     public static boolean isNight() {
+        Date date = new Date();
+        String str = parseDateToHoursAndMinutes(date, "hh");
+        int result  = Integer.parseInt(str);
+        if (result >= 6 && result<=18){
+            return true;
+        }
         return false;
     }
 
@@ -19,7 +25,7 @@ public class DateUtils {
     }
 
 
-    private static String parseDateToHoursAndMinutes(Date date, String pattern) {
+    public static String parseDateToHoursAndMinutes(Date date, String pattern) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
     }
